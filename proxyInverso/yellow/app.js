@@ -6,10 +6,10 @@ var favicon = require('serve-favicon');
 var path = require('path');
 
 // Allow the following subnet
-const allowed_subnet = ['172.20.0.0/16'];
+const allowed_subnet = ['172.30.0.0/16'];
 
 // Deny the gateway address of the network
-const denied_ip = ['172.20.0.1'];
+const denied_ip = ['172.30.0.1'];
 
 // Initialize App
 const app = express();
@@ -34,12 +34,12 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-app.use(ipfilter(allowed_subnet, { mode: 'allow' }));
-app.use(ipfilter(denied_ip, { mode: 'deny' }));
+// app.use(ipfilter(allowed_subnet, { mode: 'allow' }));
+// app.use(ipfilter(denied_ip, { mode: 'deny' }));
 
 module.exports = app;
 
-app.use(favicon(path.join(__dirname,'views','favicon.ico')));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 // Assign route
 app.use('/', (req, res) => {
